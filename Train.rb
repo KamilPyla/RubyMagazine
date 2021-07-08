@@ -2,8 +2,8 @@ require './Vehicle.rb'
 
 class Train < Vehicle
 	def initialize (number_of_carriage)
-		@carriage = 10 if number_of_carriage >= 10
 		@carriage = number_of_carriage
+		@carriage = 10 if number_of_carriage >= 10
 		@current_weight = 0
 		@list_of_parcels = []
 	end

@@ -2,9 +2,9 @@ require './Vehicle.rb'
 
 class Van < Vehicle
 	def initialize
+		@cost_per_100km = rand(5.0..8.3) * 5.6 
 		@current_weight = 0
 		@list_of_parcels = []
-		@cost_per_100km = rand(5.0..8.3) * 5.6 
 	end
 
 	def total_capacity
