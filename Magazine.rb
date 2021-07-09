@@ -1,17 +1,17 @@
-require './Graph.rb'
+require './Graph'
 
 class Magazine < Graph
-	attr_reader :localization
-	def initialize(localization)
-		@localization = localization
-		@list_of_parcels = Array(16) {Array.new}
-	end
+  attr_reader :localization, :list_of_parcels
 
-	def add_parcel (parcel)
-		@list_of_parcels[parcel.destination] << parcel
-	end
+  def initialize(localization)
+    @localization = localization
+    @list_of_parcels = Array.new(16) []
+  end
 
-	def caltulate_income
-		
-	end
+  def add_parcel(parcel)
+    @list_of_parcels[parcel.destination] << parcel
+  end
+
+  def caltulate_income
+  end
 end
