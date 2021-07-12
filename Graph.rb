@@ -41,8 +41,8 @@ class Graph
     ]
   end
   
-  def shortest_path_wg(init = 0, matrix = distance)
-  
+  def shortest_distance_wg( init = 0,path = false, matrix = distance )
+		
     vertex = []
     v = matrix[0].length
     dist = []
@@ -51,26 +51,43 @@ class Graph
     v.times do |i|
       dist << Float::INFINITY
       prev << -1
-      vertex << i
     end
 
     dist[init] = 0
 
-    while vertex.length > 0
+		3.times do |k|
+			v.times do |i|
+				vertex << i
+			end
+    	while vertex.length > 0
+      	u = vertex.shift
+      	matrix[u].each_with_index do |i,j|
+      	  next if i == 0
+      	  alt =  dist[u] + i
+      	  if alt < dist[j]
+      	    dist[j] = alt
+      	    prev[j]  = u
+      	  end    
+      	end
+    	end
+		end
 
-      u = vertex.shift
-
-      matrix[u].each_with_index do |i,j|
-        next if i == 0
-        alt =  dist[u] + i
-        if alt <= dist[j]
-          dist[j] = alt
-          prev[j]  = u
-        end    
-      end
-    end
-
-    prev
+    if path 
+			prev
+		else
+			dist
+		end
   end
 
+	def find_shortest_path(beg, en)
+		return -1 if beg == en
+		path = self.shortest_distance_wg(beg, true)
+		prev = en
+		route = [en]
+		while prev != beg
+			route << path[prev]
+			prev = path[prev]
+		end
+		route.reverse! 
+	end
 end
