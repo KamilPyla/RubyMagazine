@@ -1,23 +1,22 @@
 class Graph
-  def edges
-    [
-      [0,	1,	0,	0,	0,	0,	0,	0,	0,	0,	1,	1,	1,	0,	0,	0],
-      [1,	0,	1,	0,	0,	0,	0,	0,	0,	0,	0,	0,	1,	0,	0,	0],
-      [0,	1,	0,	1,	0,	0,	0,	0,	0,	0,	0,	0,	1,	1,	0,	0],
-      [0,	0,	1,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	1,	0,	0],
-      [0,	0,	0,	0,	0,	1,	0,	0,	0,	0,	0,	0,	0,	1,	1,	0],
-      [0,	0,	0,	0,	1,	0,	1,	0,	0,	0,	0,	0,	0,	0,	1,	0],
-      [0,	0,	0,	0,	0,	1,	0,	1,	0,	0,	0,	0,	0,	0,	1,	0],
-      [0,	0,	0,	0,	0,	0,	1,	0,	1,	0,	0,	0,	0,	0,	1,	1],
-      [0,	0,	0,	0,	0,	0,	0,	1,	0,	1,	0,	1,	0,	0,	0,	1],
-      [0,	0,	0,	0,	0,	0,	0,	0,	1,	0,	1,	1,	0,	0,	0,	0],
-      [1,	0,	0,	0,	0,	0,	0,	0,	0,	1,	0,	1,	0,	0,	0,	0],
-      [1,	0,	0,	0,	0,	0,	0,	0,	1,	1,	1,	0,	1,	0,	0,	1],
-      [1,	1,	1,	0,	0,	0,	0,	0,	0,	0,	0,	1,	0,	1,	0,	1],
-      [0,	0,	1,	1,	1,	0,	0,	0,	0,	0,	0,	0,	1,	0,	1,	1],
-      [0,	0,	0,	0,	1,	1,	1,	1,	0,	0,	0,	0,	0,	1,	0,	1],
-      [0,	0,	0,	0,	0,	0,	0,	1,	1,	0,	0,	1,	1,	1,	1,	0]
-    ]
+
+	def edges
+    [[false, true, false, false, false, false, false, false, false, false, true, true, true, false, false, false], 
+		[true, false, true, false, false, false, false, false, false, false, false, false, true, false, false, false],
+		[false, true, false, true, false, false, false, false, false, false, false, false, true, true, false, false],
+		[false, false, true, false, false, false, false, false, false, false, false, false, false, true, false, false],
+		[false, false, false, false, false, true, false, false, false, false, false, false, false, true, true, false], 
+		[false, false, false, false, true, false, true, false, false, false, false, false, false, false, true, false],
+		[false, false, false, false, false, true, false, true, false, false, false, false, false, false, true, false],
+	  [false, false, false, false, false, false, true, false, true, false, false, false, false, false, true, true], 
+		[false, false, false, false, false, false, false, true, false, true, false, true, false, false, false, true], 
+		[false, false, false, false, false, false, false, false, true, false, true, true, false, false, false, false], 
+		[true, false, false, false, false, false, false, false, false, true, false, true, false, false, false, false], 
+		[true, false, false, false, false, false, false, false, true, true, true, false, true, false, false, true],
+		[true, true, true, false, false, false, false, false, false, false, false, true, false, true, false, true], 
+		[false, false, true, true, true, false, false, false, false, false, false, false, true, false, true, true], 
+		[false, false, false, false, true, true, true, true, false, false, false, false, false, true, false, true], 
+		[false, false, false, false, false, false, false, true, true, false, false, true, true, true, true, false]] 
   end
 
   def distance 
