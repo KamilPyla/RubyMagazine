@@ -5,8 +5,8 @@ class Train < Vehicle
     @carriage = number_of_carriage
     @carriage = 10 if number_of_carriage >= 10
     @current_weight = 0
-    @list_of_parcels = []
-  end
+    @list_of_parcels = Array.new(16) {Array.new}
+	end
 
   def total_capacity
     15000 * @carriage

@@ -5,7 +5,7 @@ class Truck < Vehicle
     @semitailer = number_of_semitrailer
     @semitailer = 2 if number_of_semitrailer >= 2
     @current_weight = 0
-    @list_of_parcels = []
+    @list_of_parcels = Array.new(16) {Array.new}
   end
 
   def total_capacity

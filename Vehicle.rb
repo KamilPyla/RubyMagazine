@@ -20,7 +20,7 @@ class Vehicle
   def add_parcel(parcel)
     if @current_weight <= total_capacity - parcel.weight
       self.current_weight += parcel.weight
-      self.list_of_parcels << parcel
+      self.list_of_parcels[parcel.localization] << parcel
     else
       puts 'Vehicle is full!'
     end
@@ -29,4 +29,9 @@ class Vehicle
   def cost(distance)
     start_up_cost + distance / 100.0 * cost_per_100km
   end
+
+	def deliver!(magazine)
+
+	end
+
 end
