@@ -4,7 +4,7 @@ class Truck < Vehicle
   def self.max_capacity
     2 * 12_000
   end
-  
+
   def initialize(number_of_semitrailer)
     @semitailer = number_of_semitrailer
     @semitailer = 2 if number_of_semitrailer >= 2

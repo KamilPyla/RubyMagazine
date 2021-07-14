@@ -79,7 +79,7 @@ class Deliver
   end
 
   def check
-    puts "Check correctness"
+    puts 'Check correctness'
     @magazines.each_with_index do |m, i|
       puts "Magazine number #{i}"
       puts "List of parcels index #{i} is empty? #{m.list_of_parcels[i].empty?}"

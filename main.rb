@@ -1,10 +1,10 @@
+#! /usr/bin/env ruby
 require './train'
 require './truck'
 require './van'
 require './parcel'
 require './magazine'
 require './deliver'
-
 
 del = Deliver.new(16, rand(0..15))
 del.add_parcels(10_000)

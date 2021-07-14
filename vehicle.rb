@@ -37,6 +37,5 @@ class Vehicle
     end
     puts "Parcels have been delivered to magazine munber #{magazine.localization}"
   end
-
 end
 
