@@ -47,9 +47,8 @@ class Deliver
 
   def choose_vehicle
     total_weight = calculate_weight
-    if total_weight > 2 * Truck.max_capacity
-      Train.new((total_weight.to_f / Train.carriage_capaticy).ceil)
-    end
+    # puts "Number of carraige: #{(total_weight.to_f / Train.carriage_capaticy).ceil}"
+    Train.new((total_weight.to_f / Train.carriage_capaticy).ceil)
   end
 
   def calculate_cost
