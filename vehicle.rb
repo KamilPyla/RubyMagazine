@@ -6,15 +6,15 @@ class Vehicle
   end
 
   def total_capacity
-    raise 'Not implement method!'
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 
   def start_up_cost
-    raise 'Not implement method!'
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 
   def cost_per_100km
-    raise 'Not implement method!'
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 
   def add_parcel(parcel)
@@ -38,4 +38,3 @@ class Vehicle
     puts "Parcels have been delivered to magazine munber #{magazine.localization}"
   end
 end
-
