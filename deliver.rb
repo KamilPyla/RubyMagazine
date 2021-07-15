@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 require './train'
 require './truck'
 require './van'
 require './parcel'
 require './magazine'
 
+# Class handles parcel delivery
 class Deliver
   def initialize(number_of_magazines, init_magazine)
     @magazines = []
@@ -14,8 +17,8 @@ class Deliver
   end
 
   def add_parcels(number_of_parcels)
-    number_of_parcels.times do
-      @magazines[@init].add_parcel Parcel.new(rand(1..10), rand(20..500), rand(0..15))
+    number_of_parcels.times do |i|
+      @magazines[@init].add_parcel Parcel.new(rand(1..10), rand(20..500), rand(0..15), i)
     end
   end
 

@@ -1,4 +1,6 @@
-def tsp(neigh, val, v0)
+# frozen_string_literal: true
+
+def tsp(neigh, val, first_edg)
   @visited = Array.new(val.size, false)
   @path = Array.new(val.size)
   @path_temp = Array.new(val.size)
@@ -6,32 +8,32 @@ def tsp(neigh, val, v0)
   @shptr = 0
   @dist_temp = 0
   @n = neigh.size
-  @v0 = v0
-  
-  def tsp_rec(neigh, val, v)
-    @path_temp[@shptr] = v
+  @v0 = first_edg
+
+  def tsp_rec(neigh, val, edge)
+    @path_temp[@shptr] = edge
     @shptr += 1
     if @shptr < @n
-      @visited[v] = true
+      @visited[edge] = true
 
       (0...@n).each do |u|
-        next if !neigh[v][u] || @visited[u]
+        next if !neigh[edge][u] || @visited[u]
 
-        @dist_temp += val[v][u]
+        @dist_temp += val[edge][u]
         tsp_rec(neigh, val, u)
-        @dist_temp -= val[v][u]
+        @dist_temp -= val[edge][u]
       end
 
-      @visited[v] = false
+      @visited[edge] = false
 
-    elsif neigh[@v0][v]
-      @dist_temp += val[v][@v0]
+    elsif neigh[@v0][edge]
+      @dist_temp += val[edge][@v0]
 
       if @dist_temp < @dist
         @dist = @dist_temp
         (0...@shptr).each { |i| @path[i] = @path_temp[i] }
       end
-      @dist_temp -= val[v][@v0]
+      @dist_temp -= val[edge][@v0]
     end
 
     @shptr -= 1

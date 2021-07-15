@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
+# Class describing vehicle
 class Vehicle
   attr_accessor :current_weight, :list_of_parcels
 
   def initialize
-    raise 'Abstract class!'
+    @current_weight = 0
+    @list_of_parcels = Array.new(16) { [] }
   end
 
   def total_capacity
@@ -19,8 +23,8 @@ class Vehicle
 
   def add_parcel(parcel)
     if @current_weight <= total_capacity - parcel.weight
-      self.current_weight += parcel.weight
-      self.list_of_parcels[parcel.destination] << parcel
+      @current_weight += parcel.weight
+      @list_of_parcels[parcel.destination] << parcel
     else
       puts 'Vehicle is full!'
     end

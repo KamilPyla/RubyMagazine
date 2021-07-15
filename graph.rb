@@ -1,4 +1,12 @@
+# frozen_string_literal: true
+
+# Class implements basic graph features like Dijkstra's alghoritm
 class Graph
+  # rubocop:disable all
+  def initialize(localization)
+    @localization = localization
+  end
+
   def edges
     [[false, true, false, false, false, false, false, false, false, false, true, true, true, false, false, false], 
     [true, false, true, false, false, false, false, false, false, false, false, false, true, false, false, false],
@@ -18,7 +26,7 @@ class Graph
     [false, false, false, false, false, false, false, true, true, false, false, true, true, true, true, false]] 
   end
 
-  def distance 
+  def distance
     [
       [  0,	313,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	194,	213,	298,	  0,	  0,	  0],
       [313,	  0,	148,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	  0,  162,	  0,	  0,	  0],
@@ -38,15 +46,15 @@ class Graph
       [  0,  	0,	  0,	  0,	  0,	  0,  	0,	184,	176,	  0,	  0,	204,	165,	129,	140,	  0]
     ]
   end
-  
-  def shortest_distance_wg(init = 0, path = false, matrix = distance)
+  # rubocop:enable all
 
+  def shortest_distance_weight(init = 0, path = false, matrix = distance)
     vertex = []
     v = matrix[0].length
     dist = []
     prev = []
 
-    v.times do |i|
+    v.times do
       dist << Float::INFINITY
       prev << -1
     end
@@ -78,12 +86,12 @@ class Graph
     end
   end
 
-  def find_shortest_path(beg, en)
-    return -1 if beg == en
+  def find_shortest_path(beg, end_)
+    return -1 if beg == end_
 
     path = shortest_distance_wg(beg, true)
-    prev = en
-    route = [en]
+    prev = end_
+    route = [end_]
     while prev != beg
       route << path[prev]
       prev = path[prev]

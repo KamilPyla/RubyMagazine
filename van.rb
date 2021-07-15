@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require './vehicle'
 
+# Class describing van
 class Van < Vehicle
   def initialize
+    super()
     @combusion = rand(5.0..8.3)
-    @current_weight = 0
-    @list_of_parcels = Array.new(16) { [] }
   end
 
   def self.max_capacity
