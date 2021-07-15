@@ -1,5 +1,4 @@
 class Graph
-
   def edges
     [[false, true, false, false, false, false, false, false, false, false, true, true, true, false, false, false], 
     [true, false, true, false, false, false, false, false, false, false, false, false, true, false, false, false],
@@ -40,13 +39,13 @@ class Graph
     ]
   end
   
-  def shortest_distance_wg( init = 0,path = false, matrix = distance )
-    
+  def shortest_distance_wg(init = 0, path = false, matrix = distance)
+
     vertex = []
     v = matrix[0].length
     dist = []
     prev = []
-    
+
     v.times do |i|
       dist << Float::INFINITY
       prev << -1
@@ -54,24 +53,25 @@ class Graph
 
     dist[init] = 0
 
-    3.times do |k|
+    3.times do
       v.times do |i|
         vertex << i
       end
-      while vertex.length > 0
+      while vertex.!empty?
         u = vertex.shift
-        matrix[u].each_with_index do |i,j|
-          next if i == 0
-          alt = dist[u] + i
-          if alt < dist[j]
-            dist[j] = alt
-            prev[j] = u
-          end    
+        matrix[u].each_with_index do |val, i|
+          next if i.zero?
+
+          alt = dist[u] + val
+          if alt < dist[i]
+            dist[i] = alt
+            prev[i] = u
+          end
         end
       end
     end
 
-    if path 
+    if path
       prev
     else
       dist
