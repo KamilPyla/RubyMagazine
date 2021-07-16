@@ -14,3 +14,11 @@ del.add_parcels(10_000)
 p del.calculate_weight
 del.calculate_profit
 del.start_trip!
+
+16.times do |i|
+  m = Magazine.new(i)
+  p m.shortest_distance(i)[0]
+  16.times do |j|
+    p m.find_shortest_path(i, j)
+  end
+end

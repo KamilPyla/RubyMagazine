@@ -27,8 +27,7 @@ class Graph
   end
 
   def distance
-    [
-      [  0,	313,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	194,	213,	298,	  0,	  0,	  0],
+    [[  0,	313,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	194,	213,	298,	  0,	  0,	  0],
       [313,	  0,	148,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	  0,  162,	  0,	  0,	  0],
       [  0,	148,	  0,	209,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	164,	192,	  0,	  0],
       [  0,	  0,	209,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	  0,	192,	  0,	  0],
@@ -43,55 +42,43 @@ class Graph
       [298,	162,	164,  	0,	  0,  	0,  	0,	  0,	  0,  	0,  	0,	143,  	0,	201,  	0,	165],
       [  0,  	0,	192,	192,	167,  	0,  	0,  	0,	  0,  	0,  	0,  	0,	201,  	0,	168,	129],
       [  0,  	0,	  0,	  0,	155,	146,	111,	145,  	0,  	0,  	0,  	0,  	0,	168,  	0,	140],
-      [  0,  	0,	  0,	  0,	  0,	  0,  	0,	184,	176,	  0,	  0,	204,	165,	129,	140,	  0]
-    ]
+      [  0,  	0,	  0,	  0,	  0,	  0,  	0,	184,	176,	  0,	  0,	204,	165,	129,	140,	  0]]
   end
   # rubocop:enable all
 
-  def shortest_distance_weight(init = 0, path = false, matrix = distance)
-    vertex = []
-    v = matrix[0].length
-    dist = []
-    prev = []
-
-    v.times do
-      dist << Float::INFINITY
-      prev << -1
-    end
+  def shortest_distance(init, matrix = distance)
+    dist = Array.new(matrix.size, Float::INFINITY)
+    prev = Array.new(matrix.size, -1)
 
     dist[init] = 0
 
-    3.times do
-      v.times do |i|
-        vertex << i
-      end
-      while vertex.!empty?
-        u = vertex.shift
-        matrix[u].each_with_index do |val, i|
-          next if i.zero?
+    3.times { dist, prev = search_distance(dist, prev, matrix) }
+    [dist, prev]
+  end
 
-          alt = dist[u] + val
-          if alt < dist[i]
-            dist[i] = alt
-            prev[i] = u
-          end
+  def search_distance(dist, prev, matrix)
+    vertex = Array(0...matrix.size)
+    until vertex.empty?
+      u = vertex.shift
+      matrix[u].each_with_index do |val, i|
+        next if val.zero?
+
+        alt = dist[u] + val
+        if alt < dist[i]
+          dist[i] = alt
+          prev[i] = u
         end
       end
     end
-
-    if path
-      prev
-    else
-      dist
-    end
+    [dist, prev]
   end
 
-  def find_shortest_path(beg, end_)
-    return -1 if beg == end_
+  def find_shortest_path(beg, last)
+    return -1 if beg == last
 
-    path = shortest_distance_wg(beg, true)
-    prev = end_
-    route = [end_]
+    path = shortest_distance(beg)[1]
+    prev = last
+    route = [last]
     while prev != beg
       route << path[prev]
       prev = path[prev]
