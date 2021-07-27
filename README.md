@@ -1,6 +1,7 @@
 # Ruby_Magazine
 
-Program simulating the operation of a courier company. 
+Program simulating the operation of a courier company.
 It includes magazines, vehicles, parcels,
-caltulates the shorters path between all magazines using TSP (traveling salesman problem) algorithm 
+caltulates the shorters path between all magazines using TSP (traveling salesman problem) algorithm
 
+# Tutaj brakuje mi jakieś inttrukcji jak wogóle uruchomić Twój projekt

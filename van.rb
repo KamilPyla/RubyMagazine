@@ -9,6 +9,9 @@ class Van < Vehicle
     @combusion = rand(5.0..8.3)
   end
 
+  # 1. Zakres widocznosći zmiennej - do przemyślenia.
+  # 2. Stałe wartości powinny być zadeklarowane jako stałe i z potraktowane metodą freeze.
+
   def self.max_capacity
     3_000
   end
