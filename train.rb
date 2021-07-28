@@ -10,6 +10,8 @@ class Train < Vehicle
     @carriage = 10 if number_of_carriage >= 10
   end
 
+  # 1. Zakres widocznosći zmiennej - do przemyślenia.
+  # 2. Stałe wartości powinny być zadeklarowane jako stałe i z potraktowane metodą freeze.
   def self.max_capacity
     15_000 * 10
   end

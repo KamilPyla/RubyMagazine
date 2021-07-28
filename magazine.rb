@@ -17,6 +17,6 @@ class Magazine < Graph
   end
 
   def find_path
-    tsp(edges, distance, @localization)
+    tsp(edges, distance, @localization) # WTF is tsp, probprobably YATLA
   end
 end

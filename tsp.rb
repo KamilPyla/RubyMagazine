@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# 1. Metody powinna być w jakiejś klasie. Pojedyńcza metoda w pliku traci kontekst.
+# 2. Nazwa zmiennej powinna mówić odrazu co ona przetrymuje. Jedno lub dwu literowe skróty są nieczytelne.
+
 def tsp(neigh, val, first_edg)
   @visited = Array.new(val.size, false)
   @path = Array.new(val.size)

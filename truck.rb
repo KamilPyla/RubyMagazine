@@ -7,13 +7,15 @@ class Truck < Vehicle
   def self.max_capacity
     2 * 12_000
   end
-
+  # initializer to powinna być pierwsza metoda jaka masz w klasie.
   def initialize(number_of_semitrailer)
     super()
     @semitailer = number_of_semitrailer
     @semitailer = 2 if number_of_semitrailer >= 2
   end
 
+  # 1. Zakres widocznosći zmiennej - do przemyślenia.
+  # 2. Stałe wartości powinny być zadeklarowane jako stałe i z potraktowane metodą freeze.
   def total_capacity
     12_000 * @semitailer
   end

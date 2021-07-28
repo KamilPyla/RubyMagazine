@@ -8,6 +8,10 @@ require './magazine'
 
 # Class handles parcel delivery
 class Deliver
+  # Tutaj by Ci się przydał attr_accessor (https://www.rubyguides.com/2018/11/attr_accessor/)
+
+  # Dobrz ejest w initializerach stosować wymuszenie nazw zmiennych tzw Keyword arguments
+  # https://www.rubyguides.com/2018/06/rubys-method-arguments/
   def initialize(number_of_magazines, init_magazine)
     @magazines = []
     @delivered = Array.new(number_of_magazines, false)
@@ -16,6 +20,20 @@ class Deliver
     @order = []
   end
 
+
+  # Zasiegi metod (public private protected). Dobrą praktyką jest eksponowanie tylko
+  # tego czego chcesz uzywasz z zewnątrz. Reszta metod i zmiennych powinna być ukryta.
+  # poczytaj: https://www.rubyguides.com/2018/10/method-visibility/
+  #
+  # W main.rb uywasz tylko takich metod
+  #
+  # del.add_parcels(10_000)
+  # p del.calculate_weight
+  # del.calculate_profit
+  # del.start_trip!
+  #
+  # reszta powinna być private.
+
   def add_parcels(number_of_parcels)
     number_of_parcels.times do |i|
       @magazines[@init].add_parcel Parcel.new(rand(1..10), rand(20..500), rand(0..15), i)
@@ -23,6 +41,12 @@ class Deliver
   end
 
   def calculate_income
+    # Wyjasnij mi proszę, dlaczego dałeś tutaj taki warunek?
+    # Magazine.new.list_of_parcels zawsze jest arrayem, tak?
+    # 'map' na pustej tablicy nie wykona bloku. Ale zawsze zwróci tablice
+    # Jak dasz sum na pustej tablicy i tak wyjdzie Ci 0
+    # [1] pry(main)> [].map { |x| x * 2 }.sum
+    #  => 0
     return 0 if @magazines[@init].list_of_parcels.empty?
 
     @magazines[@init].list_of_parcels.map do |m|
@@ -55,6 +79,7 @@ class Deliver
   end
 
   def calculate_cost
+    # do tefaktury lub memoryzacji.
     choose_vehicle.cost(calculate_distance)
   end
 
