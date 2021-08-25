@@ -46,42 +46,51 @@ class Graph
   end
   # rubocop:enable all
 
-  def shortest_distance(init, matrix = distance)
-    dist = Array.new(matrix.size, Float::INFINITY)
-    prev = Array.new(matrix.size, -1)
+  def shortest_distance(init, neighborhood_matrix = distance)
+    distance_matrix = Array.new(neighborhood_matrix.size, Float::INFINITY)
+    prev_vertex_array = Array.new(neighborhood_matrix.size, -1)
 
-    dist[init] = 0
+    distance_matrix[init] = 0
 
-    3.times { dist, prev = search_distance(dist, prev, matrix) }
-    [dist, prev]
+    3.times do
+      distance_matrix, prev_vertex_array = search_distance(
+        distance_matrix,
+        prev_vertex_array,
+        neighborhood_matrix)
+    end
+    
+    [distance_matrix, prev_vertex_array]
   end
 
-  def search_distance(dist, prev, matrix)
-    vertex = Array(0...matrix.size)
-    until vertex.empty?
-      u = vertex.shift
-      matrix[u].each_with_index do |val, i|
-        next if val.zero?
+  def search_distance(distance_matrix, prev_vertex_array, neighborhood_matrix)
+    unvisited_vertices = Array(0...neighborhood_matrix.size)
 
-        alt = dist[u] + val
-        if alt < dist[i]
-          dist[i] = alt
-          prev[i] = u
+    while unvisited_vertices.present?
+      vertex_index = unvisited_vertices.shift
+
+      neighborhood_matrix[vertex_index].each_with_index do |distance, i|
+        next if distance.zero?
+
+        alt_distance = distance_matrix[vertex_index] + distance
+        if distance_matrix[i] > alt_distance
+          distance_matrix[i] = alt_distance
+          prev_vertex_array[i] = vertex_index
         end
       end
     end
-    [dist, prev]
+
+    [distance_matrix, prev_vertex_array]
   end
 
   def find_shortest_path(beg, last)
     return -1 if beg == last
 
     path = shortest_distance(beg)[1]
-    prev = last
+    prev_vertex_array = last
     route = [last]
-    while prev != beg
-      route << path[prev]
-      prev = path[prev]
+    while prev_vertex_array != beg
+      route << path[prev_vertex_array]
+      prev_vertex_array = path[prev_vertex_array]
     end
     route.reverse!
   end
